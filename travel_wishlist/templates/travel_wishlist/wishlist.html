@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel Wishlist</title>
+
+</head>
+<body>
+ <h2>Travel Wishlist</h2>
+
+ <form method="POST" action="{% url 'place_list' %}">
+     {% csrf_token %}
+     {{ new_place_form }}
+
+     <button type="submit">Add</button>
+ </form>
+
+ {% for place in places %}
+    <div>
+
+        <form method="POST" action="{% url 'place_was_visited' place.pk %}">
+            {{ place.name }}
+
+            {% csrf_token %}
+            <button type="submit">Visited!</button>
+        </form>
+
+    </div>
+
+{% empty %}
+
+<p>You have no places in your wishlist.</p>
+
+{% endfor %}
+
+<a href="{% url 'visited' %}">Places you've visited</a>
+</body>
+</html>
