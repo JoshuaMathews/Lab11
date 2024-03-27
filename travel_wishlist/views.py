@@ -28,7 +28,7 @@ def about(request):
     author = 'Josh Mathews'
     about = 'A website to create a list of places to visit'
 
-    return render(request, 'travel_wishlist/about.html', {'author': author, 'about' : about})
+    return render(request, 'travel_wishlist/about.html', {'author': author, 'about' : about}) # feed variables into django so it can display data in the about page.
 
 def places_visited(request):
     visited = Place.objects.filter(visited=True) # grab all of the objects that ARE visited.
